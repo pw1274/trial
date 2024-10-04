@@ -39,18 +39,12 @@
 
             // Fetch the JSON data
             fetch(rawUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
+                    const container = document.getElementById('data-container');
+
                     // Check if data is an array
                     if (Array.isArray(data)) {
-                        const container = document.getElementById('data-container');
-
-                        // Loop through each lecture and create elements
                         data.forEach(lecture => {
                             const lectureDiv = document.createElement('div');
                             lectureDiv.classList.add('lecture');
@@ -71,8 +65,7 @@
                             container.appendChild(lectureDiv);
                         });
                     } else {
-                        // Handle unexpected data structure
-                        document.getElementById('data-container').innerHTML = '<p>Data is not in the expected format.</p>';
+                        container.innerHTML = '<p>No lectures found.</p>';
                     }
                 })
                 .catch(error => {
