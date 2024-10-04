@@ -116,44 +116,27 @@
 </div>
 
 <script>
-    // Function to get query parameters
-    function getQueryParameter(name) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(name);
-    }
-
-    // Fetch and display notes from the JSON file based on the query parameter
-    const dataType = getQueryParameter('data'); // e.g., "notes"
-
-    if (dataType) {
-        fetch(`${dataType}.json`) // Fetching based on the query parameter
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const notesContainer = document.getElementById('notesContainer');
-                data.forEach(note => {
-                    const noteElement = document.createElement('div');
-                    noteElement.classList.add('note');
-                    noteElement.innerHTML = `
-                        <h2 class="topic">${note.topic}</h2>
-                        <p class="date">Date: ${note.date}</p>
-                        <div class="actions">
-                            <a href="${note.link}" class="btn" target="_blank"><i class="fas fa-eye"></i> Open</a>
-                            <a href="${note.link}" class="btn" download><i class="fas fa-download"></i> Download</a>
-                            <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
-                        </div>
-                    `;
-                    notesContainer.appendChild(noteElement);
-                });
-            })
-            .catch(error => console.error('Error fetching notes:', error));
-    } else {
-        document.getElementById('notesContainer').innerHTML = '<p>No data specified.</p>';
-    }
+    // Fetch and display notes from the JSON file
+    fetch('electricty-notes-udiamond.json')
+        .then(response => response.json())
+        .then(data => {
+            const notesContainer = document.getElementById('notesContainer');
+            data.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.classList.add('note');
+                noteElement.innerHTML = `
+                    <h2 class="topic">${note.topic}</h2>
+                    <p class="date">Date: ${note.date}</p>
+                    <div class="actions">
+                        <a href="${note.link}" class="btn" target="_blank"><i class="fas fa-eye"></i> Open</a>
+                        <a href="${note.link}" class="btn" download><i class="fas fa-download"></i> Download</a>
+                        <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                    </div>
+                `;
+                notesContainer.appendChild(noteElement);
+            });
+        })
+        .catch(error => console.error('Error fetching notes:', error));
 </script>
 
 </body>
