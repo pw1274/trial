@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h3 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON Data Display</h1>
+    <div id="data-container"></div>
+
+    <script>
+        // Get the file name from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file');
+
+        if (fileName) {
+            // Construct the raw GitHub URL for the JSON file
+            const rawUrl = `https://raw.githubusercontent.com/pw1274/trial/main/${fileName}`;
+
+            // Fetch the JSON data
+            fetch(rawUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display the data
+                    const container = document.getElementById('data-container');
+                    for (const key in data) {
+                        const section = document.createElement('section');
+                        section.innerHTML = `<h3>${key}</h3><pre>${JSON.stringify(data[key], null, 2)}</pre>`;
+                        container.appendChild(section);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching the data:', error);
+                    document.getElementById('data-container').innerHTML = '<p>Error fetching data.</p>';
+                });
+        } else {
+            document.getElementById('data-container').innerHTML = '<p>No file specified in the URL.</p>';
+        }
+    </script>
+</body>
+</html>
