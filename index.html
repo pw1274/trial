@@ -3,69 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture Data Display</title>
+    <title>Lecture Data</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        #lecture-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
         }
         .lecture {
-            background: white;
-            border-radius: 5px;
+            border: 1px solid #ccc;
             padding: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .lecture img {
-            max-width: 100%;
+            margin: 10px;
             border-radius: 5px;
         }
-        .lecture h2 {
-            font-size: 1.2em;
-            margin: 0 0 10px;
-        }
-        .lecture p {
-            margin: 5px 0;
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <h1>Lecture Data</h1>
+    <h1>Lecture List</h1>
     <div id="lecture-container"></div>
 
     <script>
         async function fetchLectureData() {
-            const url = `fetch_data.php`; // PHP file to fetch data
             try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('Network response was not ok');
+                const response = await fetch('fetch_data.php');
                 const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
                 displayLectures(data);
             } catch (error) {
-                console.error('There has been a problem with your fetch operation:', error);
-                document.getElementById('lecture-container').innerHTML = '<p>Failed to load lecture data.</p>';
+                console.error('Error fetching lecture data:', error);
+                document.getElementById('lecture-container').innerHTML = 'Failed to load lecture data.';
             }
         }
 
-        function displayLectures(data) {
+        function displayLectures(lectures) {
             const container = document.getElementById('lecture-container');
-            container.innerHTML = ''; // Clear the container before displaying new data
-
-            data.forEach(lecture => {
+            lectures.forEach(lecture => {
                 const lectureDiv = document.createElement('div');
-                lectureDiv.className = 'lecture';
+                lectureDiv.classList.add('lecture');
                 lectureDiv.innerHTML = `
-                    <img src="${lecture.thumbnail}" alt="${lecture.title}">
                     <h2>${lecture.title}</h2>
-                    <p><strong>Subject:</strong> ${lecture.subject_name}</p>
+                    <img src="${lecture.thumbnail}" alt="${lecture.title}">
                     <p><strong>Topic:</strong> ${lecture.topic_name}</p>
+                    <p><strong>Subject:</strong> ${lecture.subject_name}</p>
                     <p><strong>Date:</strong> ${lecture.date}</p>
                     <p><strong>Duration:</strong> ${lecture.duration}</p>
                 `;
@@ -74,7 +59,7 @@
         }
 
         // Fetch lecture data on page load
-        window.onload = fetchLectureData;
+        fetchLectureData();
     </script>
 </body>
 </html>
