@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture Data</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Data</title>
+  <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -19,16 +19,15 @@
             max-width: 100%;
             height: auto;
         }
-    </style>
+  </style>
 </head>
 <body>
-    <h1>Lecture List</h1>
-    <div id="lecture-container"></div>
-
-    <script>
+  <h1>Lecture List</h1>
+  <div id="lecture-container"></div>
+  <script>
         // Paste your JSON data here
         const jsonData = [
-{
+  {
   "title": "Electricity",
   "tabs": [
     {
@@ -121,8 +120,8 @@
       "content": []
     }
   ]
-},
-{
+  },
+  {
   "videos": [
     {
       "video_id": "66d5bb1831ac6700189a6885",
@@ -165,8 +164,8 @@
       "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66cc814a053b63001824006e&video_external_id=66ccb7a1b5b0c216c65d3dc9&url_type=penpencilvdo&type=lecture"
     }
   ]
-},
-{
+  },
+  {
   "videos": [
     {
       "video_id": "66c73f4272995b0018d6b37a",
@@ -209,8 +208,8 @@
       "completion_percentage": 0 
     }
   ]
-},
-{
+  },
+  {
   "videos": [
     {
       "video_id": "66bf52f6fe7e740018ae4b42",
@@ -257,8 +256,8 @@
       "status_id": "status-66b4c7b49400cc0018cef456"
     }
   ]
-},
-{
+  },
+  {
   "videos": [
     {
       "id": "66b3817125ff2700183597c8",
@@ -301,8 +300,8 @@
       "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66aa39a78a8d300018da0e9c&video_external_id=66aa39a78a8d300018da0e9c&url_type=penpencilvdo&type=lecture"
     }
   ]
-},
-{
+  },
+  {
   "videos": [
     {
       "video_id": "66a8e94e02713300180596a6",
@@ -346,8 +345,8 @@
     }
     
   ]
-},
-{
+  },
+  {
   "videos": [
     {
       "video_id": "669fae573d06b50018900756",
@@ -430,9 +429,9 @@
       "duration": "01:15:00"
     }
   ]
-}
+  }
 
-];
+  ];
 
         function displayLectures(lectures) {
             const container = document.getElementById('lecture-container');
@@ -453,6 +452,6 @@
 
         // Display the lectures using the inline JSON data
         displayLectures(jsonData);
-    </script>
+  </script>
 </body>
 </html>
