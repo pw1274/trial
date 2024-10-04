@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display</title>
+    <title>Lecture Data Display</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        h3 {
+        h1 {
             color: #333;
+        }
+        .lecture {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .lecture h3 {
+            margin: 0 0 10px;
+        }
+        .thumbnail {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
-    <h1>JSON Data Display</h1>
+    <h1>Lecture Data Display</h1>
     <div id="data-container"></div>
 
     <script>
@@ -36,13 +49,29 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Display the data
+                    // Assuming 'data' is an array of lectures
                     const container = document.getElementById('data-container');
-                    for (const key in data) {
-                        const section = document.createElement('section');
-                        section.innerHTML = `<h3>${key}</h3><pre>${JSON.stringify(data[key], null, 2)}</pre>`;
-                        container.appendChild(section);
-                    }
+
+                    // Loop through each lecture and create elements
+                    data.forEach(lecture => {
+                        const lectureDiv = document.createElement('div');
+                        lectureDiv.classList.add('lecture');
+
+                        lectureDiv.innerHTML = `
+                            <h3>${lecture.title}</h3>
+                            <img src="${lecture.thumbnail}" alt="${lecture.title}" class="thumbnail">
+                            <p><strong>Subject:</strong> ${lecture.subject_name}</p>
+                            <p><strong>Topic:</strong> ${lecture.topic_name}</p>
+                            <p><strong>Date:</strong> ${lecture.date}</p>
+                            <p><strong>Duration:</strong> ${lecture.duration}</p>
+                            <p><strong>Video ID:</strong> ${lecture.video_id}</p>
+                            <p><strong>Batch ID:</strong> ${lecture.batch_id}</p>
+                            <p><strong>External Video ID:</strong> ${lecture.video_external_id}</p>
+                            <p><strong>Type:</strong> ${lecture.type}</p>
+                        `;
+
+                        container.appendChild(lectureDiv);
+                    });
                 })
                 .catch(error => {
                     console.error('Error fetching the data:', error);
