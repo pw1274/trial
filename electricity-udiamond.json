@@ -1,8 +1,9 @@
+[
 {
   "title": "Electricity",
   "tabs": [
     {
-      "Videos"
+
       "content": [
         {
           "title": "Electricity 33 : Potentiometer (Part 03) || NO DPP",
@@ -91,7 +92,7 @@
       "content": []
     }
   ]
-}
+},
 {
   "videos": [
     {
@@ -135,7 +136,7 @@
       "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66cc814a053b63001824006e&video_external_id=66ccb7a1b5b0c216c65d3dc9&url_type=penpencilvdo&type=lecture"
     }
   ]
-}
+},
 {
   "videos": [
     {
@@ -146,7 +147,7 @@
       "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/5386ec2d-ef4c-4026-b66b-69e33d84e793.png",
       "date": "22 Aug 2024",
       "duration": "01:25:28",
-      "completion_percentage": 0 // Example completion percentage
+      "completion_percentage": 0 
     },
     {
       "video_id": "66c5e9cc156e3a00188d6228",
@@ -156,7 +157,7 @@
       "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/19a966fb-f605-4730-83b4-43e44d43bb58.png",
       "date": "21 Aug 2024",
       "duration": "01:19:17",
-      "completion_percentage": 0 // Example completion percentage
+      "completion_percentage": 0 
     },
     {
       "video_id": "66c498f2c75f0c001819101b",
@@ -166,7 +167,7 @@
       "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0305531f-1298-4d60-9cb0-2c754f0d6fac.png",
       "date": "20 Aug 2024",
       "duration": "01:17:38",
-      "completion_percentage": 0 // Example completion percentage
+      "completion_percentage": 0 
     },
     {
       "video_id": "66bf6884f3f4f70018e297d8",
@@ -176,10 +177,10 @@
       "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/28c7de01-929a-4037-b707-8990bb0387bc.png",
       "date": "16 Aug 2024",
       "duration": "00:48:08",
-      "completion_percentage": 0 // Example completion percentage
+      "completion_percentage": 0 
     }
   ]
-}
+},
 {
   "videos": [
     {
@@ -227,7 +228,7 @@
       "status_id": "status-66b4c7b49400cc0018cef456"
     }
   ]
-}
+},
 {
   "videos": [
     {
@@ -271,7 +272,7 @@
       "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66aa39a78a8d300018da0e9c&video_external_id=66aa39a78a8d300018da0e9c&url_type=penpencilvdo&type=lecture"
     }
   ]
-}
+},
 {
   "videos": [
     {
@@ -314,9 +315,9 @@
       "duration": "01:17:29",
       "progress_bar_id": "progress-bar-66a0ff9e90108e0018b3bfb5"
     }
-    // Add more video objects as needed
+    
   ]
-}
+},
 {
   "videos": [
     {
@@ -394,10 +395,12 @@
       "video_external_id": "669e31bdb24005001828273d",
       "url_type": "penpencilvdo",
       "type": "lecture",
-      "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/placeholder.png",  // Placeholder for missing image URL
+      "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/placeholder.png",  
       "title": "Electricity 01 : Introduction to Electricity || UDAAN Diamond 2025",
       "date": "15 Jul 2024",
       "duration": "01:15:00"
     }
   ]
 }
+
+]
