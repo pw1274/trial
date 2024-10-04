@@ -3,10 +3,10 @@
 if (isset($_GET['file'])) {
     // Sanitize the filename to prevent directory traversal attacks
     $filename = basename($_GET['file']);
-
+    
     // Define the directory where your JSON files are stored
     $directory = 'path/to/your/json/files/'; // Update this to your actual folder path
-
+    
     // Construct the full path to the JSON file
     $filepath = $directory . $filename;
 
@@ -14,12 +14,20 @@ if (isset($_GET['file'])) {
     if (file_exists($filepath)) {
         // Read the JSON file
         $jsonData = file_get_contents($filepath);
+        
         // Decode JSON to an associative array
         $data = json_decode($jsonData, true);
-
-        // Output the data in JSON format
-        header('Content-Type: application/json');
-        echo json_encode($data);
+        
+        // Check if JSON is valid
+        if (json_last_error() === JSON_ERROR_NONE) {
+            // Output the data in JSON format
+            header('Content-Type: application/json');
+            echo json_encode($data);
+        } else {
+            // Handle JSON decoding error
+            header('HTTP/1.1 500 Internal Server Error');
+            echo json_encode(['error' => 'Invalid JSON data']);
+        }
     } else {
         // Handle the case where the file doesn't exist
         header('HTTP/1.1 404 Not Found');
