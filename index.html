@@ -3,180 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecture Data</title>
+    <title>Homework Notes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef; /* Light background */
+            color: #333;
+            margin: 0;
+            padding: 0;
         }
-        .lecture {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 10px 0;
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #ffffff; /* White background for container */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF; /* Blue font */
+            margin-bottom: 30px;
+        }
+
+        .note {
+            background: #f7f9fc; /* Light card background */
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .note:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .topic {
+            font-size: 22px;
+            color: #007BFF; /* Blue font */
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #777;
+            margin: 5px 0 15px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #007BFF; /* Blue background */
+            color: white;
+            padding: 12px 15px;
+            text-decoration: none;
             border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
         }
-        img {
-            max-width: 100%;
-            height: auto;
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            margin-right: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .note {
+                padding: 15px;
+            }
+
+            .btn {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Lecture List</h1>
-    <div id="lecture-container"></div>
 
-    <script>
-        // Paste your JSON data here (make sure it's in array format)
-        const jsonData =[
-    {
-        "title": "Electricity 33: Potentiometer (Part 03) || NO DPP",
-        "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/5d6c409e-b601-450f-aa0d-aeba3ccf81bd.png",
-        "video_id": "66ead3d338c698e738ef1101",
-        "external_video_id": "66ebd2481f89333ae13cb7e6",
-        "batch_id": "669c0064ee4f9000182720ed",
-        "subject_id": "643667a6eaf5700018a8b8fa",
-        "topic": "Electricity",
-        "duration": "01:18:14",
-        "date": "18 Sep 2024",
-        "complete_status": false
-    },
-    {
-        "title": "Electricity 32: Potentiometer (Part 02) || NO DPP",
-        "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/3155484e-70dd-4f6b-bf61-1ba96eeba1e7.png",
-        "video_id": "66e9835d4e580d073ee9399c",
-        "external_video_id": "66ea8370e0a111df1a8e212f",
-        "batch_id": "669c0064ee4f9000182720ed",
-        "subject_id": "643667a6eaf5700018a8b8fa",
-        "topic": "Electricity",
-        "duration": "01:23:05",
-        "date": "17 Sep 2024",
-        "complete_status": false
-    },
-    {
-        "title": "Electricity 31: Potentiometer || NO DPP",
-        "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/8d6c0b0b-b200-40ec-9c9f-041f60b81748.png",
-        "video_id": "66e831ece1c1932a87ca9edb",
-        "external_video_id": "66e947376ba87e067ddad803",
-        "batch_id": "669c0064ee4f9000182720ed",
-        "subject_id": "643667a6eaf5700018a8b8fa",
-        "topic": "Electricity",
-        "duration": "01:23:25",
-        "date": "16 Sep 2024",
-        "complete_status": false
-    },
-    {
-        "title": "Electricity 30: Miscellaneous Problems || NO DPP",
-        "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/b4fb48a5-de32-44b0-aa62-e02fd9c608e7.png",
-        "video_id": "66e199a4e31a1014808533c5",
-        "external_video_id": "66e205f6d064b2e8c1d55bc2",
-        "batch_id": "669c0064ee4f9000182720ed",
-        "subject_id": "643667a6eaf5700018a8b8fa",
-        "topic": "Electricity",
-        "duration": "01:19:51",
-        "date": "11 Sep 2024",
-        "complete_status": false
-    },
-    {
-        "title": "Electricity 29: Questions Practice || NO DPP || UDAAN DIAMOND 2025",
-        "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a3e1b129-fbf4-4e01-b40e-e17eb3b39ec2.png",
-        "video_id": "66def6fb9b70d70018c355e9",
-        "external_video_id": "66dffe188c2bb5747fd341da",
-        "batch_id": "669c0064ee4f9000182720ed",
-        "subject_id": "643667a6eaf5700018a8b8fa",
-        "topic": "Electricity",
-        "duration": "01:20:47",
-        "date": "09 Sep 2024",
-        "complete_status": false
-    },
-    {
-        "title": "Electricity 28: Infinite Ladder Problem || Short Circuit Cause of Heating",
-        "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/3557dd5c-4303-4aae-a1bb-74a2f33c6d35.png",
-        "video_id": "66d85df29756680018607add",
-        "external_video_id": "66d8b204021ddd30c21614cb",
-        "batch_id": "669c0064ee4f9000182720ed",
-        "subject_id": "643667a6eaf5700018a8b8fa",
-        "topic": "Electricity",
-        "duration": "01:15:47",
-        "date": "04 Sep 2024",
-        "complete_status": false
-    },
-    {
-        "tab_name": "Notes",
-        "content": []
-    },
-    {
-        "tab_name": "DPP PDF",
-        "content": []
-    },
-    {
-        "tab_name": "DPP VIDEOS",
-        "content": []
-    },
-    {
-        "videos": [
-            {
-                "video_id": "66d5bb1831ac6700189a6885",
-                "title": "Electricity 27: Maximum Power Transfer Theorem || NO DPP",
-                "video_duration": "01:15:49",
-                "video_date": "02 Sep 2024",
-                "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0b3a00ae-a5cf-4aa4-a7b2-e1e319e85808.png",
-                "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66d5bb1831ac6700189a6885&video_external_id=66d6aedaf60f7aca0ee0293d&url_type=penpencilvdo&type=lecture"
-            },
-            {
-                "video_id": "66d08c55b06b63001808311e",
-                "title": "Electricity 26: Combination of Cells || NO DPP || UDAAN Diamond 2025",
-                "video_duration": "01:17:40",
-                "video_date": "29 Aug 2024",
-                "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/91267349-b9e4-4901-81d7-37e824ffd8ea.png",
-                "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66d08c55b06b63001808311e&video_external_id=66d12affcfe1197422ed5060&url_type=penpencilvdo&type=lecture"
-            },
-            {
-                "video_id": "66cf24bec27b27001815b02e",
-                "title": "Electricity 25: Electrical Energy || NO DPP || UDAAN Diamond 2025",
-                "video_duration": "01:18:07",
-                "video_date": "28 Aug 2024",
-                "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/a16414e4-2850-43a5-bb37-ee9aa2e92a7b.png",
-                "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66cf24bec27b27001815b02e&video_external_id=66cfcdb1b943ae5c34b1b757&url_type=penpencilvdo&type=lecture"
-            },
-            {
-                "video_id": "66cdd26d1d58dc00180a62da",
-                "title": "Electricity 24: Thermal Effect of Current || NO DPP",
-                "video_duration": "01:14:48",
-                "video_date": "27 Aug 2024",
-                "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/3529ab5c-f6a9-4b1e-8bd2-b50a78e14683.png",
-                "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66cdd26d1d58dc00180a62da&video_external_id=66ce750cf2825d250418fcad&url_type=penpencilvdo&type=lecture"
-            },
-            {
-                "video_id": "66c80c643cbf1a0018a13baf",
-                "title": "Electricity 23: Electrolytic Cell || NO DPP",
-                "video_duration": "01:20:15",
-                "video_date": "26 Aug 2024",
-                "thumbnail": "https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/abbce9ff-baa8-4b9c-97ab-57163b67f99f.png",
-                "url": "player_js.php?batch_id=669c0064ee4f9000182720ed&subject_id=643667a6eaf5700018a8b8fa&subject_name=Physics&subject_slug=physics-663394&topic_slug=electricity-051100&topic_name=Electricity&video_id=66c80c643cbf1a0018a13baf&video_external_id=66c7e0661b53fdf21b56480d&url_type=penpencilvdo&type=lecture"
-            }
-        ]
+<div class="container">
+    <h1>Homework Notes</h1>
+    <div id="notesContainer"></div> <!-- Container for notes -->
+
+    <div class="footer">
+        &copy; 2024 Homework Notes | All Rights Reserved
+    </div>
+</div>
+
+<script>
+    // Function to get query parameters
+    function getQueryParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
     }
-];
 
-        function displayLectures(lectures) {
-            const container = document.getElementById('lecture-container');
-            lectures.forEach(lecture => {
-                const lectureDiv = document.createElement('div');
-                lectureDiv.classList.add('lecture');
-                lectureDiv.innerHTML = `
-                    <h2>${lecture.title}</h2>
-                    <img src="${lecture.thumbnail}" alt="${lecture.title}">
-                    <p><strong>Topic:</strong> ${lecture.topic_name ? lecture.topic_name : 'N/A'}</p>
-                    <p><strong>Subject:</strong> ${lecture.subject_name ? lecture.subject_name : 'N/A'}</p>
-                    <p><strong>Date:</strong> ${lecture.date ? lecture.date : 'N/A'}</p>
-                    <p><strong>Duration:</strong> ${lecture.duration ? lecture.duration : 'N/A'}</p>
-                `;
-                container.appendChild(lectureDiv);
-            });
-        }
+    // Fetch and display notes from the JSON file based on the query parameter
+    const dataType = getQueryParameter('data'); // e.g., "notes"
 
-        // Display the lectures using the inline JSON data
-        displayLectures(jsonData);
-    </script>
+    if (dataType) {
+        fetch(`${dataType}.json`) // Fetching based on the query parameter
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const notesContainer = document.getElementById('notesContainer');
+                data.forEach(note => {
+                    const noteElement = document.createElement('div');
+                    noteElement.classList.add('note');
+                    noteElement.innerHTML = `
+                        <h2 class="topic">${note.topic}</h2>
+                        <p class="date">Date: ${note.date}</p>
+                        <div class="actions">
+                            <a href="${note.link}" class="btn" target="_blank"><i class="fas fa-eye"></i> Open</a>
+                            <a href="${note.link}" class="btn" download><i class="fas fa-download"></i> Download</a>
+                            <button class="btn" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+                        </div>
+                    `;
+                    notesContainer.appendChild(noteElement);
+                });
+            })
+            .catch(error => console.error('Error fetching notes:', error));
+    } else {
+        document.getElementById('notesContainer').innerHTML = '<p>No data specified.</p>';
+    }
+</script>
+
 </body>
 </html>
