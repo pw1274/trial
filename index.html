@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .lecture {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .thumbnail {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lecture Data Display</h1>
+    <div id="lecture-container"></div>
+
+    <script>
+        // Function to fetch JSON data from GitHub
+        async function fetchLectureData(fileName) {
+            const url = `https://raw.githubusercontent.com/pw1274/trial/main/${fileName}`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                displayLectures(data);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+                document.getElementById('lecture-container').innerHTML = '<p>Failed to load lecture data.</p>';
+            }
+        }
+
+        // Function to display lecture data
+        function displayLectures(data) {
+            const container = document.getElementById('lecture-container');
+            container.innerHTML = ''; // Clear previous content
+
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach(lecture => {
+                    const lectureDiv = document.createElement('div');
+                    lectureDiv.className = 'lecture';
+                    lectureDiv.innerHTML = `
+                        <h3>${lecture.title}</h3>
+                        <img src="${lecture.thumbnail}" alt="${lecture.title}" class="thumbnail">
+                        <p><strong>Subject:</strong> ${lecture.subject_name}</p>
+                        <p><strong>Topic:</strong> ${lecture.topic_name}</p>
+                        <p><strong>Date:</strong> ${lecture.date}</p>
+                        <p><strong>Duration:</strong> ${lecture.duration}</p>
+                        <p><strong>Video ID:</strong> ${lecture.video_id}</p>
+                        <p><strong>Batch ID:</strong> ${lecture.batch_id}</p>
+                        <p><strong>External Video ID:</strong> ${lecture.video_external_id}</p>
+                        <p><strong>Type:</strong> ${lecture.type}</p>
+                    `;
+                    container.appendChild(lectureDiv);
+                });
+            } else {
+                container.innerHTML = '<p>No lectures found or invalid JSON format.</p>';
+            }
+        }
+
+        // Fetch data when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchLectureData('electricity-udiamond.json'); // Replace with your file name
+        });
+    </script>
+
+</body>
+</html>
