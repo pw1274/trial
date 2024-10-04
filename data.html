@@ -18,9 +18,6 @@
             padding: 15px;
             margin-bottom: 20px;
         }
-        .lecture h3 {
-            margin: 0 0 10px;
-        }
         .thumbnail {
             max-width: 100%;
             height: auto;
@@ -49,29 +46,34 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Assuming 'data' is an array of lectures
-                    const container = document.getElementById('data-container');
+                    // Check if data is an array
+                    if (Array.isArray(data)) {
+                        const container = document.getElementById('data-container');
 
-                    // Loop through each lecture and create elements
-                    data.forEach(lecture => {
-                        const lectureDiv = document.createElement('div');
-                        lectureDiv.classList.add('lecture');
+                        // Loop through each lecture and create elements
+                        data.forEach(lecture => {
+                            const lectureDiv = document.createElement('div');
+                            lectureDiv.classList.add('lecture');
 
-                        lectureDiv.innerHTML = `
-                            <h3>${lecture.title}</h3>
-                            <img src="${lecture.thumbnail}" alt="${lecture.title}" class="thumbnail">
-                            <p><strong>Subject:</strong> ${lecture.subject_name}</p>
-                            <p><strong>Topic:</strong> ${lecture.topic_name}</p>
-                            <p><strong>Date:</strong> ${lecture.date}</p>
-                            <p><strong>Duration:</strong> ${lecture.duration}</p>
-                            <p><strong>Video ID:</strong> ${lecture.video_id}</p>
-                            <p><strong>Batch ID:</strong> ${lecture.batch_id}</p>
-                            <p><strong>External Video ID:</strong> ${lecture.video_external_id}</p>
-                            <p><strong>Type:</strong> ${lecture.type}</p>
-                        `;
+                            lectureDiv.innerHTML = `
+                                <h3>${lecture.title}</h3>
+                                <img src="${lecture.thumbnail}" alt="${lecture.title}" class="thumbnail">
+                                <p><strong>Subject:</strong> ${lecture.subject_name}</p>
+                                <p><strong>Topic:</strong> ${lecture.topic_name}</p>
+                                <p><strong>Date:</strong> ${lecture.date}</p>
+                                <p><strong>Duration:</strong> ${lecture.duration}</p>
+                                <p><strong>Video ID:</strong> ${lecture.video_id}</p>
+                                <p><strong>Batch ID:</strong> ${lecture.batch_id}</p>
+                                <p><strong>External Video ID:</strong> ${lecture.video_external_id}</p>
+                                <p><strong>Type:</strong> ${lecture.type}</p>
+                            `;
 
-                        container.appendChild(lectureDiv);
-                    });
+                            container.appendChild(lectureDiv);
+                        });
+                    } else {
+                        // Handle unexpected data structure
+                        document.getElementById('data-container').innerHTML = '<p>Data is not in the expected format.</p>';
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching the data:', error);
